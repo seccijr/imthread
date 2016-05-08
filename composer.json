@@ -54,6 +54,10 @@
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
       "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
+    ],
+    "compile": [
+      "bin/console doctrine:schema:drop --force",
+      "bin/console doctrine:schema:create"
     ]
   },
   "extra": {
