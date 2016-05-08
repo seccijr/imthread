@@ -1,0 +1,10 @@
+{
+    "scripts": {
+        "postdeploy": "php app/console doctrine:schema:drop --force && php app/console doctrine:schema:create"
+    },
+    "env": {
+        "SYMFONY_ENV": {
+            "value": "prod"
+        }
+    },
+}

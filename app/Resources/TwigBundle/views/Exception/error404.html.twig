@@ -1,0 +1,8 @@
+{% block body %}
+    <h1>{{ 'page-not-found-title'|trans|capitalize }}</h1>
+
+    <p>
+        {{ 'page-not-found'|trans|capitalize }}
+         <a href="{{ path('forum') }}">{{ 'return-to-home'|trans }}</a>.
+    </p>
+{% endblock %}
