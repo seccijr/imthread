@@ -4,6 +4,16 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    app.utilservice:
+        class:  AppBundle\Service\UtilService
+    app.forumservice:
+        class:  AppBundle\Service\ForumService
+        arguments:
+          - '@doctrine.orm.entity_manager'
+          - '@app.paramfactory'
+          - '@app.utilservice'
+          - '%kernel.root_dir%/../web/%upload_dir%'
+    app.postfactory:
+        class:  AppBundle\Service\PostFactory
+    app.paramfactory:
+        class:  AppBundle\Service\ParamFactory

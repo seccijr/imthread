@@ -1,0 +1,4 @@
+{{ 'title'|trans|title }},{{ 'filename'|trans|title }}
+{% for post in posts %}
+{{ post.title }},{{ post.name }}
+{% endfor %}

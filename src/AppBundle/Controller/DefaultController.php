@@ -2,20 +2,59 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Form\PostType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/", name="forum")
+     * @Method({"GET", "POST"})
+     * @param Request $request
+     * @return Response
      */
-    public function indexAction(Request $request)
+    public function forumAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..'),
-        ]);
+        $forumservice = $this->get('app.forumservice');
+        $post = $this->get('app.postfactory')->create();
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $forumservice->uploadPost($post);
+            $this->addFlash('success', 'image.saved');
+        }
+
+        $forumservice->increaseViews();
+        $stats = $forumservice->getStats();
+        $posts = $forumservice->getAllPosts();
+
+        return $this->render('forum.html.twig', array_merge([
+            'form' => $form->createView(),
+            'posts' => $posts,
+            'uploadDir' => $this->getParameter('upload_dir')
+        ], $stats));
+    }
+    
+    /**
+     * @Route("/export", name="export")
+     * @Method({"GET"})
+     * @param Request $request
+     * @return Response
+     */
+    public function exportAction(Request $request)
+    {
+        $forumservice = $this->get('app.forumservice');
+        $posts = $forumservice->getAllPosts();
+        $response = $this->render('forum.csv.html.twig', array('posts' => $posts));
+        $filename = $this->get('translator')->trans('images');
+        $response->headers->set('Content-Type', 'text/csv');
+        $response->headers->set('Content-Disposition', "attachment; filename=$filename.csv");
+        
+        return $response;
     }
 }

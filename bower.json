@@ -1,0 +1,27 @@
+{
+  "name": "imthread",
+  "authors": [
+    "Carlos I. Pérez Sechi <secci.jr@gmail.com>"
+  ],
+  "description": "Simplified forum webb app, containing only one thread of discussion, where each post is an image with a title, a bit like Instagram",
+  "main": "",
+  "keywords": [
+    "forum",
+    "app",
+    "Instagram",
+    "image"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/vendor/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

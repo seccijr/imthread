@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div id="body" class="row">
+        <div class="col-md-2">
+            {% block left %}
+            {% endblock %}
+        </div>
+        <div id="body" class="col-md-8">
+            {% set success = app.session.flashbag.get("success") %}
+            {% if  success is not empty %}
+                <div class="alert alert-success">
+                    <ul>
+                        {% for message in success %}
+                            <li>
+                                {{ message|trans|title }}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            {% block center %}
+            {% endblock %}
+        </div>
+        <div class="col-md-2">
+            {% block right %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap/dist/css/bootstrap.min.css') }}">
+{% endblock %}
