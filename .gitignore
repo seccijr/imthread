@@ -15,6 +15,7 @@
 /vendor/
 /web/bundles/
 .idea/
-/web/uploads
+/web/uploads/documents
+!web/uploads/documents/.gitkeep
 /web/assets
 /*.iml
