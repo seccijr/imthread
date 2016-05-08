@@ -1,6 +1,10 @@
 {
-  "name": "secci/.checkout",
-  "license": "proprietary",
+  "name": "imthread",
+  "authors": [
+    "Carlos I. Pérez Sechi <secci.jr@gmail.com>"
+  ],
+  "description": "Simplified forum webb app, containing only one thread of discussion, where each post is an image with a title, a bit like Instagram",
+  "license": "MIT",
   "type": "project",
   "autoload": {
     "psr-4": {
