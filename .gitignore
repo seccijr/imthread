@@ -17,5 +17,4 @@
 .idea/
 /web/uploads/documents
 !web/uploads/documents/.gitkeep
-/web/assets
 /*.iml
