@@ -11,6 +11,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class PostRepository extends EntityRepository
 {
+    /**
+     * Gets all posts from the post data source table.
+     * It orders the result attending to each post creation date
+     * in a descending sort.
+     * 
+     * @return array
+     */
     public function getAllOrdered()
     {
         $qb = $this->createQueryBuilder('p')
@@ -19,7 +26,13 @@ class PostRepository extends EntityRepository
         
         return $qb->getQuery()->getResult();
     }
-    
+
+    /**
+     * This method gets the total number of posts hosted at
+     * the data source.
+     * 
+     * @return int
+     */
     public function getTotalCount()
     {
         $qb = $this->createQueryBuilder('p')

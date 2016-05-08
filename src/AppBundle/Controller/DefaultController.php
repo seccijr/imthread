@@ -12,6 +12,10 @@ use Symfony\Component\HttpFoundation\Response;
 class DefaultController extends Controller
 {
     /**
+     * Default home arrival action where all image posts
+     * are displaayed in one thread. This route also allows
+     * posting new images using the POST method.
+     * 
      * @Route("/", name="forum")
      * @Method({"GET", "POST"})
      * @param Request $request
@@ -41,6 +45,10 @@ class DefaultController extends Controller
     }
     
     /**
+     * Accessing to this route using the GET method allow clients
+     * to retrieve a report of all the hosted image images
+     * describing each image with its title and file name
+     * 
      * @Route("/export", name="export")
      * @Method({"GET"})
      * @param Request $request

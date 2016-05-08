@@ -6,6 +6,13 @@ use Composer\Script\Event;
 
 class HerokuDatabase
 {
+    /**
+     * Script executed previous installation command of Composer.
+     * It allows the application to setup database parameters
+     * importing them from environment variables
+     * 
+     * @param Event $event
+     */
     public static function populateEnvironment(Event $event)
     {
         $url = getenv("DATABASE_URL");
